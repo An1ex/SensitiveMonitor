@@ -12,8 +12,8 @@ import (
 	"bili-monitor-system/db"
 	"bili-monitor-system/filter"
 	"bili-monitor-system/spider"
+	"bili-monitor-system/view"
 
-	echarts2 "bili-monitor-system/echarts"
 	"github.com/robfig/cron/v3"
 )
 
@@ -34,13 +34,13 @@ func init() {
 
 func main() {
 	c := cron.New()
-	if _, err := c.AddFunc("@every 2s", spider.StartSpider); err != nil {
+	if _, err := c.AddFunc("@every 5s", spider.Start); err != nil {
 		log.Fatalf("[colly] %v", err)
 	}
 	c.Start()
 
-	http.HandleFunc("/timeline", echarts2.TimelineHandler)
-	http.HandleFunc("/wordcloud", echarts2.WordCloudHandler)
+	//localhost:8080/view?id=&time=
+	http.HandleFunc("/view", view.PageHandler)
 	http.ListenAndServe(":8081", nil)
 
 	ch := make(chan os.Signal, 1)

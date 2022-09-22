@@ -21,7 +21,7 @@ func Init() error {
 	//s := bufio.NewReader(sf)
 	memStore, err = store.NewMemoryStore(store.MemoryConfig{
 		//Reader:     s,
-		DataSource: []string{"回声"},
+		DataSource: []string{"苦难"},
 	})
 	if err != nil {
 		return err
@@ -29,17 +29,19 @@ func Init() error {
 	return nil
 }
 
-func Filter(bid string, comments db.Comments) error {
+func Filter(bid string, comments db.Comments) int {
+	count := 0
 	for _, comment := range comments {
 		originText := comment.Content
 		filterManage := filter.NewDirtyManager(memStore)
-		result, _ := filterManage.Filter().Filter(originText, '*', '@', '#')
+		result, _ := filterManage.Filter().Filter(originText, '@', '，', '。', '[', ']', '！')
 		if len(result) != 0 {
+			count += 1
 			err := alarm.Alarm(bid, comment)
 			if err != nil {
 				log.Printf("[alarm] %v", err)
 			}
 		}
 	}
-	return nil
+	return count
 }

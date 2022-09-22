@@ -9,15 +9,16 @@ import (
 
 type Video struct {
 	gorm.Model
-	Author   string   `json:"author"`
-	Mid      int      `json:"mid"`
-	Title    string   `json:"title"`
-	Aid      int      `json:"aid"`
-	Bvid     string   `json:"bvid"`
-	Comment  int      `json:"comment"`
-	Play     int      `json:"play"`
-	Pic      string   `json:"pic"`
-	Comments Comments `json:"comments"`
+	Author    string   `json:"author"`
+	Mid       int      `json:"mid"`
+	Title     string   `json:"title"`
+	Aid       int      `json:"aid"`
+	Bvid      string   `json:"bvid"`
+	Comment   int      `json:"comment"`
+	Sensitive int      `json:"sensitive"`
+	Play      int      `json:"play"`
+	Pic       string   `json:"pic"`
+	Comments  Comments `json:"comments"`
 }
 
 type Dynamic struct {
