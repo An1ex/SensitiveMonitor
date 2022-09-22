@@ -1,0 +1,14 @@
+mysql:
+  username: "root"
+  password: "root"
+  address: "localhost:3306"
+  database: "bili_monitor"
+
+mail:
+  host: "smtp.mail.com"
+  port: 465
+  username: "youremail@mail.com"
+  password: "password"
+  isSSL: true
+  from: "youremail@mail.com"
+  to: ["toemail@mail.com","toemail@mail.com"]
