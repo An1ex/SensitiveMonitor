@@ -1,11 +1,13 @@
 package filter
 
 import (
+	"log"
+
+	"bili-monitor-system/alarm"
 	"bili-monitor-system/db"
-	"bili-monitor-system/internal/alarm"
+
 	filter "github.com/antlinker/go-dirtyfilter"
 	"github.com/antlinker/go-dirtyfilter/store"
-	"log"
 )
 
 var (

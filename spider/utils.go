@@ -1,7 +1,7 @@
 package spider
 
 import (
-	"bili-monitor-system/internal/api"
+	"bili-monitor-system/api"
 	"encoding/json"
 )
 

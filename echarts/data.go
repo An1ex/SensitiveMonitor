@@ -1,13 +1,14 @@
 package echarts
 
 import (
-	"bili-monitor-system/db"
-	"github.com/huichen/sego"
 	"math/rand"
 	"sort"
 	"strings"
 	"sync"
 	"unicode"
+
+	"bili-monitor-system/db"
+	"github.com/huichen/sego"
 )
 
 type WordFrequency struct {

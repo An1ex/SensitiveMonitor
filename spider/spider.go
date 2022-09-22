@@ -1,7 +1,7 @@
 package spider
 
 import (
-	"bili-monitor-system/internal/filter"
+	"bili-monitor-system/filter"
 	"encoding/json"
 	"errors"
 	"github.com/gocolly/colly/v2"

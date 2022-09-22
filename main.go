@@ -1,9 +1,6 @@
 package main
 
 import (
-	"bili-monitor-system/internal/echarts"
-	"bili-monitor-system/internal/filter"
-	"bili-monitor-system/internal/spider"
 	"fmt"
 	"log"
 	"net/http"
@@ -13,6 +10,10 @@ import (
 
 	"bili-monitor-system/config"
 	"bili-monitor-system/db"
+	"bili-monitor-system/filter"
+	"bili-monitor-system/spider"
+
+	echarts2 "bili-monitor-system/echarts"
 	"github.com/robfig/cron/v3"
 )
 
@@ -38,8 +39,8 @@ func main() {
 	}
 	c.Start()
 
-	http.HandleFunc("/timeline", echarts.TimelineHandler)
-	http.HandleFunc("/wordcloud", echarts.WordCloudHandler)
+	http.HandleFunc("/timeline", echarts2.TimelineHandler)
+	http.HandleFunc("/wordcloud", echarts2.WordCloudHandler)
 	http.ListenAndServe(":8081", nil)
 
 	ch := make(chan os.Signal, 1)
