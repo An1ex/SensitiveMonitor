@@ -137,9 +137,6 @@ func saveSpider(vData db.Video) error {
 		}
 	} else { //视频已爬取过
 		vData.Model = vOldData.Model
-		//if vData.Comment != vOldData.Comment { //有新评论，才需要过滤
-		//	vData.Sensitive = filter.Filter(vData.Bvid, vData.Comments)
-		//}
 		vData.Sensitive = filter.Filter(vData.Bvid, vData.Comments)
 		if err = db.DB.Save(&vData).Error; err != nil {
 			log.Printf("[db] %v", err)

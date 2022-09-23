@@ -1,7 +1,10 @@
 package filter
 
 import (
+	"bufio"
+	"io"
 	"log"
+	"os"
 
 	"bili-monitor-system/alarm"
 	"bili-monitor-system/db"
@@ -11,17 +14,28 @@ import (
 )
 
 var (
-	memStore *store.MemoryStore
+	memStore   *store.MemoryStore
+	datasource = make([]string, 0)
 )
 
 func Init() error {
-	var err error
-	//sf, _ := os.Open("sensitive/guns.txt")
-	//defer sf.Close()
-	//s := bufio.NewReader(sf)
+	sf, err := os.Open("sensitive/test.txt")
+	if err != nil {
+		return err
+	}
+	defer sf.Close()
+	r := bufio.NewReader(sf)
+	var line string
+	for {
+		line, err = r.ReadString('\n')
+		datasource = append(datasource, line)
+		if err != nil || err == io.EOF {
+			break
+		}
+	}
 	memStore, err = store.NewMemoryStore(store.MemoryConfig{
 		//Reader:     s,
-		DataSource: []string{"苦难"},
+		DataSource: datasource,
 	})
 	if err != nil {
 		return err
